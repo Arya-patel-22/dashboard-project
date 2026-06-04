@@ -8,7 +8,7 @@ const app = express();
 // Initialize database connection
 connectDB().catch(err => console.error("Database initialization failed:", err));
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 app.post("/signup", async (req, res) => {

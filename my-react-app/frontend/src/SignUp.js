@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import api from "./api";
 
 function Signup() {
 
@@ -59,7 +60,7 @@ function Signup() {
     };
 
     try {
-      const response = await fetch("https://dashboard-project-production-563c.up.railway.app/signup", {
+      const response = await fetch(`${api.signup}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
