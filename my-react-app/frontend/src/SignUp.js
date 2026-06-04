@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "./api";
+import API_BASE_URL from "./api";
 
 function Signup() {
 
@@ -60,13 +60,18 @@ function Signup() {
     };
 
     try {
-      const response = await fetch(`${api.signup}`, {
+      const response = await fetch(`${API_BASE_URL}/api/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(userData)
       });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `API request failed with status ${response.status}`);
+      }
 
       const data = await response.json();
       alert(data.message || "Signup Successful");
